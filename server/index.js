@@ -54,7 +54,7 @@ function audit(event,details={}) {
  .run(crypto.randomUUID(),event,JSON.stringify(details),new Date().toISOString());
 }
 function auth(req,res,next) {
- const supplied=String(req.headers.authorization||'').replace(/^Bearer\\s+/i,'');
+ const supplied=String(req.headers.authorization||'').replace(/^Bearer\s+/i,'');
  const a=Buffer.from(supplied), b=Buffer.from(adminToken);
  if(!adminToken || a.length!==b.length || !crypto.timingSafeEqual(a,b)) return res.status(401).json({error:'unauthorized'});
  next();
