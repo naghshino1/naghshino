@@ -32,7 +32,7 @@ export async function onRequest(context) {
   if (!db) return json({ error: "database_not_bound", message: "Bind a D1 database as DB." }, 503);
   const path = url.pathname.replace(/^\/api\/?/, "");
   if (path === "health" && request.method === "GET") return json({
-    ok: true, service: "naghshino-company-os", aiConfigured: Boolean(env.AI_API_KEY && env.AI_MODEL)
+    ok: true, service: "naghshino-company-os", aiConfigured: Boolean(env.AI)
   });
   if (!authorized(request, env)) return json({ error: "unauthorized" }, 401);
   try {
@@ -69,19 +69,19 @@ export async function onRequest(context) {
       const body = await request.json();
       const goal = String(body.goal || "").trim();
       if (!goal || goal.length > 4000) return json({ error: "goal_required_max_4000" }, 400);
-      if (!env.AI_API_KEY || !env.AI_MODEL) return json({ error: "ai_not_configured" }, 503);
-      const base = (env.AI_BASE_URL || "https://api.openai.com/v1").replace(/\/$/, "");
-      const response = await fetch(base + "/chat/completions", {
-        method: "POST",
-        headers: { authorization: "Bearer " + env.AI_API_KEY, "content-type": "application/json" },
-        body: JSON.stringify({ model: env.AI_MODEL, temperature: 0.2, messages: [
+      if (!env.AI) return json({ error: "workers_ai_not_bound", message: "Add a Workers AI binding named AI to this Pages project." }, 503);
+      const model = env.AI_MODEL || "@cf/meta/llama-3.1-8b-instruct";
+      let payload;
+      try {
+        payload = await env.AI.run(model, { temperature: 0.2, messages: [
           { role: "system", content: 'You are the owner-supervised CEO planner of Naghshino. Return only JSON: {"summary":"...","tasks":[{"title":"...","department":"finance|marketing|sales|operations|research|support","description":"..."}]}. Create 3-8 practical tasks. Never claim to execute anything. Mark sensitive external actions as requiring owner approval.' },
           { role: "user", content: goal }
-        ] })
-      });
-      if (!response.ok) return json({ error: "model_provider_error", providerStatus: response.status }, 502);
-      const payload = await response.json();
-      const raw = payload.choices?.[0]?.message?.content || "";
+        ] });
+      } catch (error) {
+        console.error("Workers AI error", error);
+        return json({ error: "workers_ai_error" }, 502);
+      }
+      const raw = payload.response || payload.result?.response || "";
       let plan;
       try { plan = JSON.parse(raw.replace(/^\x60\x60\x60json\s*/, "").replace(/\s*\x60\x60\x60$/, "")); }
       catch { return json({ error: "invalid_model_response" }, 502); }
