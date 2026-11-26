@@ -25,3 +25,9 @@ Open `index.html` in a browser. No build step is required.
 
 ## Safety
 Require explicit owner approval before payments, publishing, deleting data, sending customer messages, or other irreversible/external actions.
+
+
+## Backend foundation
+A Node.js API foundation is included in `server/index.js` with persistent SQLite tasks, CEO task planning through a configured OpenAI-compatible API, department roles, approval requests, and audit events. See [Backend setup](docs/BACKEND.md).
+
+**The backend is not deployed by GitHub Pages.** It must be deployed separately to a trusted Node.js host with persistent storage and private environment secrets. The AI planner remains inactive until the owner configures a provider key and model on that host.
