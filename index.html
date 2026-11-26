@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="fa" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#101018">
+<meta name="description" content="نقشینو؛ فروشگاه هدیه‌ها و محصولات شخصی‌سازی‌شده با طرح‌های خاص">
+<title>نقشینو | چیزهایی با امضای تو</title>
+<style>
+:root{--bg:#0d0d13;--panel:#171720;--muted:#a7a5b5;--text:#f7f5fb;--accent:#c6a6ff;--line:#292735;--gold:#e8c98a}
+*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--text);font-family:Tahoma,Arial,sans-serif;line-height:1.8}a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}.wrap{width:min(1160px,92%);margin:auto}
+header{position:sticky;top:0;z-index:10;background:#0d0d13ed;backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}.nav{height:74px;display:flex;align-items:center;justify-content:space-between;gap:20px}.logo{font-size:27px;font-weight:900;letter-spacing:-1px}.logo span{color:var(--accent)}.links{display:flex;gap:22px;color:var(--muted);font-size:14px}.cart{border:1px solid #4c4162;background:#211a2d;color:white;padding:9px 15px;border-radius:999px}
+.hero{padding:76px 0 58px;background:radial-gradient(ellipse at 75% 20%,#49316b66,transparent 48%),radial-gradient(ellipse at 15% 80%,#73532b33,transparent 38%)}.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:36px;align-items:center}.eyebrow{color:var(--gold);font-size:13px;letter-spacing:1px}.hero h1{font-size:clamp(38px,6vw,68px);line-height:1.35;margin:14px 0}.hero h1 em{font-style:normal;color:var(--accent)}.hero p{color:var(--muted);max-width:570px}.cta{display:inline-block;margin-top:18px;background:var(--accent);color:#171020;padding:12px 23px;border-radius:12px;font-weight:bold}.hero-art{min-height:330px;border:1px solid #ffffff18;border-radius:28px;background:linear-gradient(145deg,#30243f,#171721 65%);display:grid;place-items:center;position:relative;overflow:hidden}.hero-art:before,.hero-art:after{content:"";position:absolute;border:1px solid #ffffff22;border-radius:50%;width:270px;height:270px}.hero-art:after{width:190px;height:190px}.hero-mark{font-size:105px;z-index:1;filter:drop-shadow(0 12px 24px #0008)}.hero-caption{position:absolute;bottom:22px;color:#d8c6f2;font-size:13px}
+.section{padding:48px 0}.section-head{display:flex;justify-content:space-between;align-items:end;gap:16px;margin-bottom:24px}.section h2{font-size:28px;margin:0}.section-head p{margin:5px 0 0;color:var(--muted);font-size:14px}.filters{display:flex;gap:9px;flex-wrap:wrap;margin-bottom:22px}.filter{border:1px solid var(--line);background:transparent;color:var(--muted);padding:8px 14px;border-radius:999px}.filter.active{background:#30243f;color:#fff;border-color:#8063a7}
+.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.product{background:var(--panel);border:1px solid var(--line);border-radius:18px;overflow:hidden;transition:.2s}.product:hover{transform:translateY(-4px);border-color:#725b91}.product-visual{height:155px;display:grid;place-items:center;background:linear-gradient(145deg,#282235,#1a1923);font-size:60px}.product-info{padding:14px}.product h3{margin:0 0 4px;font-size:16px}.product p{margin:0;color:var(--muted);font-size:12px;min-height:42px}.product-bottom{display:flex;align-items:center;justify-content:space-between;margin-top:13px}.price{color:var(--gold);font-size:13px}.add{border:0;background:#30243f;color:#eee;padding:7px 11px;border-radius:9px;font-size:12px}
+.note{background:#171720;border:1px solid var(--line);border-radius:20px;padding:26px;display:flex;justify-content:space-between;gap:20px;align-items:center}.note p{margin:5px 0 0;color:var(--muted);font-size:14px}
+footer{border-top:1px solid var(--line);padding:30px 0;color:var(--muted);font-size:13px}.footer-row{display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap}
+#toast{position:fixed;bottom:20px;left:20px;background:#292139;border:1px solid #8063a7;padding:10px 16px;border-radius:12px;opacity:0;transform:translateY(10px);transition:.25s;pointer-events:none}#toast.show{opacity:1;transform:none}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.hero-grid{grid-template-columns:1fr}.hero-art{min-height:230px}.links{display:none}}@media(max-width:460px){.grid{gap:10px}.product-visual{height:120px;font-size:48px}.product-info{padding:11px}.section h2{font-size:23px}.hero{padding-top:48px}}
+</style>
+</head>
+<body>
+<header><div class="wrap nav"><a class="logo" href="#">نقش<span>ینو</span></a><nav class="links"><a href="#products">محصولات</a><a href="#story">درباره نقشینو</a><a href="#contact">ارتباط</a></nav><button class="cart" onclick="showCart()">سبد خرید <b id="count">۰</b></button></div></header>
+<main>
+<section class="hero"><div class="wrap hero-grid"><div><div class="eyebrow">هدیه‌هایی که شبیه هیچ‌کس نیستند</div><h1>هر ایده‌ای،<br><em>یک نقش تازه.</em></h1><p>به نقشینو خوش آمدی؛ جایی برای تبدیل سلیقه و خاطره‌ها به چیزهایی که هر روز می‌بینی، استفاده می‌کنی و دوستشان داری.</p><a class="cta" href="#products">کشف محصولات</a></div><div class="hero-art"><div class="hero-mark">✳</div><div class="hero-caption">خاص انتخاب کن؛ خاص زندگی کن</div></div></div></section>
+<section class="section wrap" id="products"><div class="section-head"><div><h2>ویترین نقشینو</h2><p>محصول مورد علاقه‌ات را پیدا کن</p></div></div><div class="filters" id="filters"></div><div class="grid" id="grid"></div></section>
+<section class="section wrap" id="story"><div class="note"><div><h2>ایده‌ات را به نقش تبدیل کن</h2><p>نقشینو برای انتخاب‌های شخصی و هدیه‌های متفاوت ساخته شده است.</p></div><span style="font-size:42px;color:var(--accent)">✧</span></div></section>
+</main>
+<footer id="contact"><div class="wrap footer-row"><span>© نقشینو — همه حقوق محفوظ است.</span><span>برای سفارش و پشتیبانی: اطلاعات تماس فروشگاه به‌زودی اضافه می‌شود.</span></div></footer><div id="toast"></div>
+<script>
+const products=[
+{name:"ماگ و لیوان",cat:"ماگ و لیوان",icon:"☕",desc:"طرح‌های خاص برای لحظه‌های روزمره"},
+{name:"قاب گوشی",cat:"قاب گوشی",icon:"📱",desc:"استایل شخصی برای گوشی تو"},
+{name:"تقویم رومیزی",cat:"تقویم",icon:"🗓️",desc:"هر روز، یک شروع تازه"},
+{name:"پازل",cat:"پازل",icon:"🧩",desc:"سرگرمی با طرح دلخواه"},
+{name:"تابلو و آثار دیواری",cat:"تابلو",icon:"🖼️",desc:"هنر برای فضای شخصی تو"},
+{name:"ساک پارچه‌ای",cat:"ساک پارچه‌ای",icon:"👜",desc:"همراه کاربردی با طرح متفاوت"},
+{name:"خودکار",cat:"خودکار",icon:"🖊️",desc:"برای نوشتن ایده‌های بزرگ"},
+{name:"جاکارتی",cat:"جاکارتی",icon:"💳",desc:"ساده، جمع‌وجور و کاربردی"},
+{name:"جاکلیدی",cat:"جاکلیدی",icon:"🔑",desc:"یک جزئیات کوچک و دوست‌داشتنی"},
+{name:"تیشرت سفید",cat:"تیشرت",icon:"👕",desc:"تیشرت سفید با طرح دلخواه"},
+{name:"تیشرت مشکی",cat:"تیشرت",icon:"👕",desc:"تیشرت مشکی با طرح دلخواه"}
+];
+let cart=[];let active="همه";
+const cats=["همه",...new Set(products.map(p=>p.cat))];
+const filters=document.getElementById("filters"),grid=document.getElementById("grid");
+function renderFilters(){filters.innerHTML=cats.map(c=>'<button class="filter '+(c===active?'active':'')+'" onclick="setFilter('+JSON.stringify(c)+')">'+c+'</button>').join("")}
+function render(){grid.innerHTML=products.filter(p=>active==="همه"||p.cat===active).map((p,i)=>'<article class="product"><div class="product-visual">'+p.icon+'</div><div class="product-info"><h3>'+p.name+'</h3><p>'+p.desc+'</p><div class="product-bottom"><span class="price">قیمت پس از انتخاب طرح</span><button class="add" onclick="add('+products.indexOf(p)+')">افزودن</button></div></div></article>').join("")}
+function setFilter(c){active=c;renderFilters();render()}
+function add(i){cart.push(products[i].name);document.getElementById("count").textContent=cart.length.toLocaleString("fa-IR");toast("به سبد خرید اضافه شد")}
+function showCart(){toast(cart.length?("سبد خرید: "+cart.join("، ")):"سبد خریدت هنوز خالی است")}
+function toast(t){const e=document.getElementById("toast");e.textContent=t;e.classList.add("show");setTimeout(()=>e.classList.remove("show"),2600)}
+renderFilters();render();
+</script>
+</body></html>
