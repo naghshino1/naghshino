@@ -54,9 +54,9 @@ function audit(event,details={}) {
  .run(crypto.randomUUID(),event,JSON.stringify(details),new Date().toISOString());
 }
 function auth(req,res,next) {
- if(!adminToken || !req.headers.authorization || !crypto.timingSafeEqual(
-   Buffer.from(req.headers.authorization.replace(/^Bearer\s+/i,'')),
-   Buffer.from(adminToken))) return res.status(401).json({error:'unauthorized'});
+ const supplied=String(req.headers.authorization||'').replace(/^Bearer\\s+/i,'');
+ const a=Buffer.from(supplied), b=Buffer.from(adminToken);
+ if(!adminToken || a.length!==b.length || !crypto.timingSafeEqual(a,b)) return res.status(401).json({error:'unauthorized'});
  next();
 }
 app.get('/api/health',(req,res)=>res.json({ok:true,service:'naghshino-company-os',aiConfigured:Boolean(process.env.AI_API_KEY&&process.env.AI_MODEL)}));
