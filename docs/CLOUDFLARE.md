@@ -6,14 +6,13 @@ The static site is published from the repository root. The Pages Function in `fu
 
 1. In Cloudflare Dashboard, open **Workers & Pages** and select the `naghshino` Pages project.
 2. Create a D1 database named `naghshino-db`.
-3. Copy its database ID into `wrangler.toml`, replacing `REPLACE_WITH_D1_DATABASE_ID`.
 4. In the Pages project's **Settings → Functions → D1 database bindings**, bind variable name `DB` to that database.
 5. Add these server-side variables under **Settings → Variables and Secrets**:
    - `ADMIN_TOKEN`: a long random secret (Secret).
    - `AI_API_KEY`: optional model-provider key (Secret; required for real AI planning).
    - `AI_MODEL`: exact model identifier supported by the provider.
    - `AI_BASE_URL`: optional OpenAI-compatible API base URL; defaults to OpenAI.
-6. Apply the D1 migration from the repository root using Wrangler: `npx wrangler d1 migrations apply naghshino-db --remote`.
+6. Open the D1 database's **Console** and run the SQL in `migrations/0001_initial.sql`.
 7. Trigger a new Pages deployment.
 
 The API health check is `/api/health`. Authenticated endpoints use `Authorization: Bearer <ADMIN_TOKEN>`: `GET /api/agents`, `GET/POST /api/tasks`, `PATCH /api/tasks/:id`, `POST /api/ceo/plan`, and `GET /api/audit`.
