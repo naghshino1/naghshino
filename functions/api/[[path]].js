@@ -16,8 +16,8 @@ async function audit(db, event, details = {}) {
     .bind(id(), event, JSON.stringify(details), now()).run();
 }
 function authorized(request, env) {
-  const token = (request.headers.get("authorization") || "").replace(/^Bearer\s+/i, "").trim();
-  const expected = String(env.ADMIN_TOKEN || "").trim();
+  const token = (request.headers.get("authorization") || "").replace(/^Bearer\\s+/i, "").replace(/^Bearer\\s+/i, "").trim();
+  const expected = String(env.ADMIN_TOKEN || "").replace(/^Bearer\\s+/i, "").trim();
   return Boolean(expected && token && token === expected);
 }
 export async function onRequest(context) {
